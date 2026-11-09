@@ -2,5 +2,8 @@ name = "LibreOffice Writer"
 summary = "Write documents"
 category = "Office"
 source = { debian = "libreoffice-writer" }
-exec = "lowriter"
-full_closure = true
+# LibreOffice lives in /usr/lib/libreoffice; its core and UNO runtime are
+# part of the app rather than ordinary libraries.
+include = ["libreoffice-core", "libreoffice-common", "ure", "libreoffice-style-colibre"]
+exec = "usr/lib/libreoffice/program/soffice"
+args = ["--writer"]

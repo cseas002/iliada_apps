@@ -1,0 +1,8 @@
+# Chromium: the open-source browser Google Chrome is built from (same engine).
+# Google Chrome itself may not be redistributed; see README ("Google Chrome").
+name = "Chromium"
+summary = "Browse the web"
+category = "Internet"
+source = { debian = "chromium" }
+include = ["chromium-common"]
+network = true

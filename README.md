@@ -38,8 +38,19 @@ network = true                     # optional: the app needs the internet (shown
 full_closure = false               # optional: also bundle non-library dependencies
 ```
 
+Other optional fields: `include = ["pkg", …]` (extra packages unpacked into
+the app itself: plugins, programs outside the library path) and
+`args = ["--flag"]` (always passed to the program).
+
 An app is only added to the catalog after it passes a launch test in the
 Iliada test VM.
+
+## Google Chrome
+
+Google's licence does not allow redistributing Chrome, so it cannot be in this
+catalog. **Chromium** (the open-source browser Chrome is built from) is. Chrome
+itself will be offered as an *on-device* recipe: the Store points at Google's
+official download and the user's own machine translates it into a `.app`.
 
 ## Licences
 
