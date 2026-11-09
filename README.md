@@ -53,6 +53,16 @@ catalog. **Chromium** (the open-source browser Chrome is built from) is. Chrome
 itself will be offered as an *on-device* recipe: the Store points at Google's
 official download and the user's own machine translates it into a `.app`.
 
+## Sources and licences
+
+Every app here is built, unmodified, from Debian stable packages. Each bundle's
+`Contents/Provenance.toml` lists every package it contains, with exact
+versions, download URLs and SHA-256 hashes. The corresponding source code for
+each of those versions is published by Debian (`deb.debian.org`, and
+permanently at `snapshot.debian.org`). Each app keeps its own licence (see
+`/usr/share/doc/<package>/copyright` inside the bundle), and names and logos
+belong to their owners (e.g. Firefox and Thunderbird are Mozilla trademarks).
+
 ## Licences
 
 The recipes and tooling here are MIT OR Apache-2.0. Each app keeps its own
