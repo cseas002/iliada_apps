@@ -1,0 +1,4 @@
+name = "Document Viewer"
+summary = "Read PDFs and documents"
+category = "Office"
+source = { debian = "evince" }

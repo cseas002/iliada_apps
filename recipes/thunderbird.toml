@@ -1,0 +1,5 @@
+name = "Thunderbird"
+summary = "Email, calendar and contacts"
+category = "Internet"
+source = { debian = "thunderbird" }
+network = true

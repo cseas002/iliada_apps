@@ -1,0 +1,4 @@
+name = "GIMP"
+summary = "Edit photos and images"
+category = "Graphics"
+source = { debian = "gimp" }

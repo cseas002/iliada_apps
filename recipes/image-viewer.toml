@@ -1,0 +1,4 @@
+name = "Image Viewer"
+summary = "View pictures"
+category = "Graphics"
+source = { debian = "loupe" }

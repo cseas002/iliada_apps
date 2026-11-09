@@ -1,0 +1,6 @@
+name = "Firefox"
+summary = "Browse the web"
+category = "Internet"
+source = { debian = "firefox-esr" }
+exec = "firefox-esr"
+network = true

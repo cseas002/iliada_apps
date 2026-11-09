@@ -1,0 +1,4 @@
+name = "Mines"
+summary = "Clear the minefield"
+category = "Games"
+source = { debian = "gnome-mines" }

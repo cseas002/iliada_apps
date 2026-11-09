@@ -1,0 +1,6 @@
+name = "LibreOffice Writer"
+summary = "Write documents"
+category = "Office"
+source = { debian = "libreoffice-writer" }
+exec = "lowriter"
+full_closure = true

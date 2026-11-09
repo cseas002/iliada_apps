@@ -1,0 +1,4 @@
+name = "VLC"
+summary = "Play videos and music"
+category = "Media"
+source = { debian = "vlc" }

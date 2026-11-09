@@ -1,0 +1,4 @@
+name = "Calculator"
+summary = "Calculate"
+category = "Utilities"
+source = { debian = "gnome-calculator" }

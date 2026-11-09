@@ -1,0 +1,4 @@
+name = "2048"
+summary = "Slide tiles to 2048"
+category = "Games"
+source = { debian = "gnome-2048" }
