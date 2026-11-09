@@ -6,3 +6,4 @@ category = "Internet"
 source = { debian = "chromium" }
 include = ["chromium-common"]
 network = true
+args = ["--ozone-platform=wayland"]

@@ -26,7 +26,10 @@ export XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-1
 setsid timeout $((WAIT + 10)) iliada-run '/Applications/$app' > /tmp/launch-$safe.log 2>&1 < /dev/null &
 SH
   sleep "$WAIT"
-  alive=$(VM "pgrep -f '/Applications/$app' >/dev/null && echo yes || echo no")
+  # The app's own program (not the timeout/iliada-run/bwrap wrappers).
+  entry=$(VM "sed -n 's/^entry = \"\\(.*\\)\"/\\1/p' '/Applications/$app/Contents/Info.toml'")
+  prog=$(basename "$entry")
+  alive=$(VM "ps -eo args | grep -v -e timeout -e iliada-run -e bwrap -e grep | grep -q -- '$prog' && echo yes || echo no")
   "$VNC" -s 127.0.0.1::5900 -p iliada capture "$RESULTS/$safe.png" 2>/dev/null
   VM "grep -viE 'mesa|egl|zink|dri2|currency|session bus|machine-id|fontconfig warning' /tmp/launch-$safe.log | head -15" > "$RESULTS/$safe.log"
   VM "pkill -f '/Applications/$app'; true"

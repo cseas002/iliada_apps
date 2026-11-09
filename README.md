@@ -40,7 +40,8 @@ full_closure = false               # optional: also bundle non-library dependenc
 
 Other optional fields: `include = ["pkg", …]` (extra packages unpacked into
 the app itself: plugins, programs outside the library path) and
-`args = ["--flag"]` (always passed to the program).
+`args = ["--flag"]` (always passed to the program) and
+`env = { NAME = "value" }` (always set for the app).
 
 An app is only added to the catalog after it passes a launch test in the
 Iliada test VM.

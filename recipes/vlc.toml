@@ -3,5 +3,5 @@ summary = "Play videos and music"
 category = "Media"
 # `vlc` is a metapackage; the program and its plugins are separate packages.
 source = { debian = "vlc-bin" }
-include = ["vlc-plugin-base", "vlc-plugin-qt", "vlc-plugin-video-output", "vlc-data"]
+include = ["vlc-plugin-base", "vlc-plugin-qt", "vlc-plugin-video-output", "vlc-data", "qtwayland5"]
 exec = "vlc"
