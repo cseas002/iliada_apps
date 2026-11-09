@@ -30,7 +30,8 @@ SH
   entry=$(VM "sed -n 's/^entry = \"\\(.*\\)\"/\\1/p' '/Applications/$app/Contents/Info.toml'")
   prog=$(basename "$entry")
   alive=$(VM "ps -eo args | grep -v -e timeout -e iliada-run -e bwrap -e grep | grep -q -- '$prog' && echo yes || echo no")
-  "$VNC" -s 127.0.0.1::5900 -p iliada capture "$RESULTS/$safe.png" 2>/dev/null
+  # Wake the display first (an idle session may have blanked it).
+  "$VNC" -s 127.0.0.1::5900 -p iliada move 800 500 pause 1 move 810 505 pause 1 capture "$RESULTS/$safe.png" 2>/dev/null
   VM "grep -viE 'mesa|egl|zink|dri2|currency|session bus|machine-id|fontconfig warning' /tmp/launch-$safe.log | head -15" > "$RESULTS/$safe.log"
   VM "pkill -f '/Applications/$app'; true"
   sleep 3
