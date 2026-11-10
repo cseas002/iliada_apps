@@ -8,3 +8,4 @@ include = ["libreoffice-core", "libreoffice-common", "ure", "uno-libs-private", 
 exec = "usr/lib/libreoffice/program/soffice"
 args = ["--writer"]
 env = { SAL_USE_VCLPLUGIN = "gtk3" }
+folders = ["documents"]

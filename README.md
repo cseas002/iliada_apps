@@ -36,12 +36,23 @@ source = { debian = "firefox-esr" }
 exec = "firefox-esr"               # optional: which program to start
 network = true                     # optional: the app needs the internet (shown in the Store)
 full_closure = false               # optional: also bundle non-library dependencies
+folders = ["downloads"]            # optional: user folders it works with (asked on first launch)
+permissions = [{ capability = "sound", purpose = "To play sound." }]
 ```
 
 Other optional fields: `include = ["pkg", …]` (extra packages unpacked into
 the app itself: plugins, programs outside the library path) and
 `args = ["--flag"]` (always passed to the program) and
 `env = { NAME = "value" }` (always set for the app).
+
+Permissions: every app runs in its own sandbox and sees only its own data.
+`folders` (documents, downloads, music, pictures, videos) are asked for the
+first time the app runs, in a window Iliada draws; the answer can be changed
+in Settings → Privacy. `permissions` takes any capability from
+`Permissions.toml` (`sound` is granted without asking; `camera` and
+`microphone` are asked). Apps that link audio libraries get `sound` (and may
+ask for the microphone) without declaring it. Declare only what the app
+obviously needs.
 
 An app is only added to the catalog after it passes a launch test in the
 Iliada test VM.

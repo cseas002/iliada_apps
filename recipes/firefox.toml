@@ -4,3 +4,5 @@ category = "Internet"
 source = { debian = "firefox-esr" }
 exec = "firefox-esr"
 network = true
+folders = ["downloads"]
+permissions = [{ capability = "sound", purpose = "To play sound." }]

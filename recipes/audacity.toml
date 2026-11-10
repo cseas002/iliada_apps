@@ -2,3 +2,4 @@ name = "Audacity"
 summary = "Record and edit audio"
 category = "Media"
 source = { debian = "audacity" }
+folders = ["music"]

@@ -7,3 +7,5 @@ source = { debian = "chromium" }
 include = ["chromium-common"]
 network = true
 args = ["--ozone-platform=wayland"]
+folders = ["downloads"]
+permissions = [{ capability = "sound", purpose = "To play sound." }]

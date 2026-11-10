@@ -3,3 +3,5 @@ summary = "Email, calendar and contacts"
 category = "Internet"
 source = { debian = "thunderbird" }
 network = true
+folders = ["downloads"]
+permissions = [{ capability = "sound", purpose = "To play sound." }]

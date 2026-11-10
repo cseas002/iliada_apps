@@ -2,3 +2,4 @@ name = "Text Editor"
 summary = "Edit plain text"
 category = "Utilities"
 source = { debian = "gnome-text-editor" }
+folders = ["documents"]

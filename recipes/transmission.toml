@@ -3,3 +3,4 @@ summary = "Download torrents"
 category = "Internet"
 source = { debian = "transmission-gtk" }
 network = true
+folders = ["downloads"]

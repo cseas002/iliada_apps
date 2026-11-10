@@ -2,3 +2,4 @@ name = "Inkscape"
 summary = "Vector drawing"
 category = "Graphics"
 source = { debian = "inkscape" }
+folders = ["pictures"]
