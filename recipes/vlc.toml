@@ -7,3 +7,6 @@ include = ["vlc-plugin-base", "vlc-plugin-qt", "vlc-plugin-video-output", "vlc-d
 exec = "vlc"
 folders = ["videos", "music"]
 permissions = [{ capability = "sound", purpose = "To play sound." }]
+# VLC looks for plugins next to libvlccore, which Iliada keeps with the
+# app's other libraries; point it at the plugins (both architectures).
+env = { VLC_PLUGIN_PATH = "/usr/lib/x86_64-linux-gnu/vlc/plugins:/usr/lib/aarch64-linux-gnu/vlc/plugins" }
