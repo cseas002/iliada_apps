@@ -9,3 +9,6 @@ exec = "usr/lib/libreoffice/program/soffice"
 args = ["--writer"]
 env = { SAL_USE_VCLPLUGIN = "gtk3" }
 folders = ["documents"]
+# Debian's install script copies LibreOffice's main configuration into /etc;
+# Iliada never runs install scripts, so the recipe does it.
+copy = { "etc/libreoffice/registry/main.xcd" = "usr/lib/libreoffice/share/.registry/main.xcd" }

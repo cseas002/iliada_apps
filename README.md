@@ -43,7 +43,10 @@ permissions = [{ capability = "sound", purpose = "To play sound." }]
 Other optional fields: `include = ["pkg", …]` (extra packages unpacked into
 the app itself: plugins, programs outside the library path) and
 `args = ["--flag"]` (always passed to the program) and
-`env = { NAME = "value" }` (always set for the app).
+`env = { NAME = "value" }` (always set for the app) and
+`copy = { "dest" = "source" }` (files put in place inside the app, both
+paths relative to it: what a Debian install script would have done; Iliada
+never runs those).
 
 Permissions: every app runs in its own sandbox and sees only its own data.
 `folders` (documents, downloads, music, pictures, videos) are asked for the

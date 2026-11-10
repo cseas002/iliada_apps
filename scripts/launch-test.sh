@@ -23,7 +23,7 @@ for app in "${apps[@]}"; do
   tar -C "$BUNDLES" -cf - "$app" | VM "tar -C /Applications -xf -"
   VM "bash -s" <<SH
 export XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-1
-ILIADA_ASSUME=allow setsid timeout $((WAIT + 10)) iliada-run '/Applications/$app' > /tmp/launch-$safe.log 2>&1 < /dev/null &
+ILIADA_ASSUME=allow setsid timeout $((WAIT + 10)) ${IR:-iliada-run} '/Applications/$app' > /tmp/launch-$safe.log 2>&1 < /dev/null &
 SH
   sleep "$WAIT"
   # The app's own program (not the timeout/iliada-run/bwrap wrappers).
