@@ -3,8 +3,9 @@ summary = "Write documents"
 category = "Office"
 source = { debian = "libreoffice-writer" }
 # LibreOffice lives in /usr/lib/libreoffice; its core and UNO runtime are
-# part of the app rather than ordinary libraries.
-include = ["libreoffice-core", "libreoffice-core-nogui", "libreoffice-common", "ure", "uno-libs-private", "libreoffice-base-core", "libreoffice-style-colibre", "libreoffice-gtk3", "libreoffice-uiconfig-common", "libreoffice-uiconfig-writer"]
+# part of the app rather than ordinary libraries. (Not libreoffice-core-nogui:
+# it replaces soffice.bin and libmergedlo.so with headless builds.)
+include = ["libreoffice-core", "libreoffice-common", "ure", "uno-libs-private", "libreoffice-base-core", "libreoffice-style-colibre", "libreoffice-gtk3", "libreoffice-uiconfig-common", "libreoffice-uiconfig-writer"]
 exec = "usr/lib/libreoffice/program/soffice"
 args = ["--writer"]
 env = { SAL_USE_VCLPLUGIN = "gtk3" }
