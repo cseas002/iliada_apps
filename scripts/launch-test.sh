@@ -7,12 +7,20 @@
 # desktop session through iliada-run (as a click would), wait, record whether
 # it is still running, its first errors, and a VNC screenshot, then stop it.
 # Requires the dev VM (SSH on 127.0.0.1:2222, VNC :0) and sshpass/vncdo.
+# Another VM: VM_PORT=2223 VM_KEY=~/.ssh/key (key instead of the password)
+# VNC_ADDR=127.0.0.1::5901.
 set -uo pipefail
 BUNDLES="${1:?bundles dir}"; RESULTS="${2:?results dir}"; shift 2
 WAIT="${WAIT:-20}"
 SP=$(ls -d /nix/store/*-sshpass-*/bin/sshpass | head -1)
 VNC=$(ls -d /nix/store/*-vncdotool-*/bin/vncdo | head -1)
-VM() { "$SP" -p iliada ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -p 2222 iliada@127.0.0.1 "$@"; }
+SSH_OPTS=(-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -o ConnectTimeout=60 -p "${VM_PORT:-2222}")
+VNC_ADDR="${VNC_ADDR:-127.0.0.1::5900}"
+if [ -n "${VM_KEY:-}" ]; then
+  VM() { ssh -i "$VM_KEY" "${SSH_OPTS[@]}" iliada@127.0.0.1 "$@"; }
+else
+  VM() { "$SP" -p iliada ssh "${SSH_OPTS[@]}" iliada@127.0.0.1 "$@"; }
+fi
 mkdir -p "$RESULTS"
 if [ $# -gt 0 ]; then apps=("$@"); else mapfile -t apps < <(cd "$BUNDLES" && ls -d *.app); fi
 printf '%-24s %-8s %s\n' APP RESULT NOTE > "$RESULTS/summary.txt"
@@ -23,15 +31,15 @@ for app in "${apps[@]}"; do
   tar -C "$BUNDLES" -cf - "$app" | VM "tar -C /Applications -xf -"
   VM "bash -s" <<SH
 export XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-1
-ILIADA_ASSUME=allow setsid timeout $((WAIT + 10)) ${IR:-iliada-run} '/Applications/$app' > /tmp/launch-$safe.log 2>&1 < /dev/null &
+ILIADA_ASSUME=allow setsid timeout $((WAIT + 600)) ${IR:-iliada-run} '/Applications/$app' > /tmp/launch-$safe.log 2>&1 < /dev/null &
 SH
   sleep "$WAIT"
+  # Wake the display first (an idle session may have blanked it).
+  "$VNC" -s "$VNC_ADDR" -p iliada move 800 500 pause 1 move 810 505 pause 1 capture "$RESULTS/$safe.png" 2>/dev/null
   # The app's own program (not the timeout/iliada-run/bwrap wrappers).
-  entry=$(VM "sed -n 's/^entry = \"\\(.*\\)\"/\\1/p' '/Applications/$app/Contents/Info.toml'")
+  entry=$(sed -n 's/^entry = "\(.*\)"/\1/p' "$BUNDLES/$app/Contents/Info.toml")
   prog=$(basename "$entry")
   alive=$(VM "ps -eo args | grep -v -e timeout -e iliada-run -e bwrap -e grep | grep -q -- '$prog' && echo yes || echo no")
-  # Wake the display first (an idle session may have blanked it).
-  "$VNC" -s 127.0.0.1::5900 -p iliada move 800 500 pause 1 move 810 505 pause 1 capture "$RESULTS/$safe.png" 2>/dev/null
   VM "grep -viE 'mesa|egl|zink|dri2|currency|session bus|machine-id|fontconfig warning' /tmp/launch-$safe.log | head -15" > "$RESULTS/$safe.log"
   VM "pkill -f '/Applications/$app'; true"
   sleep 3

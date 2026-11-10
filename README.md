@@ -4,8 +4,9 @@ The app catalog behind the **Iliada Store**.
 
 Every app in Iliada is a self-contained, sandboxed `.app` bundle. This
 repository says *which* apps exist and *how* each is built; the built bundles
-are published as release files, and a signed `catalog.json` tells the Store
-what is available.
+are published as release files, and a signed catalog (`catalog-2.json`; and
+`catalog.json` for Iliada 0.1) tells the Store what is available. Every app
+is built for Intel/AMD (x86-64) and ARM (aarch64) computers.
 
 ```
 recipes/<name>.toml    one file per app: where it comes from, what it needs
@@ -17,9 +18,9 @@ CATALOG.md             the catalog and archive formats
 1. A recipe is added here (see below).
 2. The Iliada build server runs the Package Translator on it: the upstream
    package becomes `Name.app` (dependencies bundled, provenance recorded),
-   which is packed into `Name.app.tar.zst`.
+   which is packed into `Name.app.tar.zst`, once per processor.
 3. The archive is uploaded as a release of this repository, and its SHA-256
-   goes into `catalog.json`, which is signed with the Iliada catalog key.
+   goes into the catalog, which is signed with the Iliada catalog key.
 4. The Store downloads the catalog, checks its signature against the key
    built into Iliada, and installs an app by downloading its archive,
    checking the hash, and unpacking it into `/Applications`, exactly as if
@@ -58,7 +59,7 @@ ask for the microphone) without declaring it. Declare only what the app
 obviously needs.
 
 An app is only added to the catalog after it passes a launch test in the
-Iliada test VM.
+Iliada test VM, for each processor (the ARM build in an emulated ARM VM).
 
 ## Google Chrome
 
