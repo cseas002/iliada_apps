@@ -1,0 +1,11 @@
+# Added by the catalog builder (iliada-catalog suggest), like LibreOffice Writer's recipe.
+name = "LibreOffice Calc"
+summary = "Spreadsheet program of the LibreOffice productivity suite"
+category = "Office"
+source = { debian = "libreoffice-calc" }
+include = ["libreoffice-core", "libreoffice-common", "ure", "uno-libs-private", "libreoffice-base-core", "libreoffice-style-colibre", "libreoffice-gtk3", "libreoffice-uiconfig-common", "libreoffice-uiconfig-calc"]
+exec = "usr/lib/libreoffice/program/soffice"
+args = ["--calc"]
+env = { SAL_USE_VCLPLUGIN = "gtk3" }
+folders = ["documents"]
+copy = { "etc/libreoffice/registry/main.xcd" = "usr/lib/libreoffice/share/.registry/main.xcd" }

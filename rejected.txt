@@ -1,0 +1,2 @@
+kdeconnect  # 2026-11-13 did not start:      export $(dbus-launch) 
+libreoffice-draw  # 2026-11-13 did not start:  Failed to open display Warning: failed to launch javaldx - java may not function correctly 

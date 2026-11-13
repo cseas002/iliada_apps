@@ -1,0 +1,11 @@
+# Added by the catalog builder (iliada-catalog suggest), like LibreOffice Writer's recipe.
+name = "LibreOffice Math"
+summary = "Create and edit scientific formulas and equations"
+category = "Office"
+source = { debian = "libreoffice-math" }
+include = ["libreoffice-core", "libreoffice-common", "ure", "uno-libs-private", "libreoffice-base-core", "libreoffice-style-colibre", "libreoffice-gtk3", "libreoffice-uiconfig-common", "libreoffice-uiconfig-math"]
+exec = "usr/lib/libreoffice/program/soffice"
+args = ["--math"]
+env = { SAL_USE_VCLPLUGIN = "gtk3" }
+folders = ["documents"]
+copy = { "etc/libreoffice/registry/main.xcd" = "usr/lib/libreoffice/share/.registry/main.xcd" }
