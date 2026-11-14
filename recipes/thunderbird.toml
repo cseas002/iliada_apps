@@ -5,3 +5,5 @@ source = { debian = "thunderbird" }
 network = true
 folders = ["downloads"]
 permissions = [{ capability = "sound", purpose = "To play sound." }]
+not_needed = ["microphone"] # it links an audio library, but never records
+build = 1

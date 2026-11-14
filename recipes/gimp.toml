@@ -3,3 +3,5 @@ summary = "Edit photos and images"
 category = "Graphics"
 source = { debian = "gimp" }
 folders = ["pictures"]
+not_needed = ["microphone"] # it links an audio library, but never records
+build = 1

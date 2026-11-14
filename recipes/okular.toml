@@ -4,3 +4,5 @@ summary = "View and annotate documents"
 category = "Office"
 source = { debian = "okular" }
 folders = ["documents"]
+not_needed = ["microphone"] # it links an audio library, but never records
+build = 1
