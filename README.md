@@ -57,6 +57,12 @@ in Settings → Privacy. `permissions` takes any capability from
 `microphone` are asked). Apps that link audio libraries get `sound` (and may
 ask for the microphone) without declaring it. Declare only what the app
 obviously needs.
+`not_needed = ["microphone"]` drops a guessed permission the app never uses
+(Okular, GIMP, Thunderbird and VLC link audio libraries but never record).
+
+Rebuilding an app whose Debian version has not changed (a recipe change):
+raise `build` (`build = 1` publishes 48.1-3 as 48.1-3+iliada1). A published
+version is never replaced; systems update to the new one.
 
 An app is only added to the catalog after it passes a launch test in the
 Iliada test VM, for each processor (the ARM build in an emulated ARM VM).
