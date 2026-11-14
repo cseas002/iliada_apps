@@ -1,2 +1,4 @@
 kdeconnect  # 2026-11-13 did not start:      export $(dbus-launch) 
 libreoffice-draw  # 2026-11-13 did not start:  Failed to open display Warning: failed to launch javaldx - java may not function correctly 
+gnome-characters  # 2026-11-14 did not start:  bwrap: execvp /usr/share/org.gnome.Characters/org.gnome.Characters: No such file or directory 
+kmail  # 2026-11-14 did not start:      export $(dbus-launch) 

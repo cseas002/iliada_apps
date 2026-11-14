@@ -1,0 +1,5 @@
+# Added by the catalog builder from Debian's description (iliada-catalog suggest).
+name = "File Roller"
+summary = "Open, modify and create compressed archive files"
+category = "Utilities"
+source = { debian = "file-roller" }

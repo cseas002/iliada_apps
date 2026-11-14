@@ -1,0 +1,6 @@
+# Added by the catalog builder from Debian's description (iliada-catalog suggest).
+name = "Okular"
+summary = "View and annotate documents"
+category = "Office"
+source = { debian = "okular" }
+folders = ["documents"]

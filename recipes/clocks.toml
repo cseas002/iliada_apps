@@ -1,0 +1,5 @@
+# Added by the catalog builder from Debian's description (iliada-catalog suggest).
+name = "Clocks"
+summary = "Keep track of time"
+category = "Utilities"
+source = { debian = "gnome-clocks" }
