@@ -16,7 +16,7 @@
 set -euo pipefail
 COUNT="${1:-5}"
 APPS="$(cd "$(dirname "$0")/.." && pwd)"
-OS="${ILIADA_OS:-$HOME/iliada_os}"
+OS="${ILIADA_OS:-$HOME/iliada/iliada_os}"
 OUT="${ILIADA_DIST:-$HOME/iliada-dist}"
 KEY="${ILIADA_CATALOG_KEY:-$HOME/.config/iliada/catalog.key}"
 TARGET="${CARGO_TARGET_DIR:-$HOME/iliada-build/target}"
