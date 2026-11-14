@@ -6,3 +6,23 @@ exec = "firefox-esr"
 network = true
 folders = ["downloads"]
 permissions = [{ capability = "sound", purpose = "To play sound." }]
+build = 1
+
+# Bitwarden comes with Firefox and is where passwords are saved (Firefox's
+# own password saving is off, so there is one place for them). People can
+# turn the extension off in Add-ons.
+[write]
+"usr/lib/firefox-esr/distribution/policies.json" = '''
+{
+  "policies": {
+    "PasswordManagerEnabled": false,
+    "ExtensionSettings": {
+      "{446900e4-71c2-419f-a6a7-df9c091e268b}": {
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi",
+        "default_area": "navbar"
+      }
+    }
+  }
+}
+'''
