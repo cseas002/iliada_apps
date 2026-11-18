@@ -29,17 +29,17 @@ fields it does not know, so new fields only ever go into `catalog-2.json`.
       "network": true,
       "archives": {
         "x86_64": {
-          "url": "https://github.com/cseas002/iliada_apps/releases/download/firefox-140.4.0esr-1_deb13u1/firefox.app.tar.zst",
+          "url": "https://github.com/iliada-os/apps/releases/download/firefox-140.4.0esr-1_deb13u1/firefox.app.tar.zst",
           "sha256": "…",
           "size": 98765432
         },
         "aarch64": {
-          "url": "https://github.com/cseas002/iliada_apps/releases/download/firefox-140.4.0esr-1_deb13u1/firefox-arm64.app.tar.zst",
+          "url": "https://github.com/iliada-os/apps/releases/download/firefox-140.4.0esr-1_deb13u1/firefox-arm64.app.tar.zst",
           "sha256": "…",
           "size": 91234567
         }
       },
-      "icon": "https://github.com/cseas002/iliada_apps/releases/download/…/firefox.png"
+      "icon": "https://github.com/iliada-os/apps/releases/download/…/firefox.png"
     }
   ]
 }

@@ -12,7 +12,7 @@
 # The catalogs live in the rolling "catalog" release.
 set -euo pipefail
 OUT="${1:?usage: publish.sh <out-dir>}"
-REPO="${ILIADA_APPS_REPO:-cseas002/iliada_apps}"
+REPO="${ILIADA_APPS_REPO:-iliada-os/apps}"
 [ -f "$OUT/catalog.json" ] || { echo "catalog.json missing in $OUT" >&2; exit 1; }
 catalogs=()
 for c in catalog.json catalog-2.json; do
