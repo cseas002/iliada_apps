@@ -1,0 +1,12 @@
+# Bitwarden's desktop app (GPL-3.0 build), from Bitwarden's own .deb on
+# GitHub (Debian doesn't carry it). The same vault as the Bitwarden
+# extension that comes with Firefox and Chromium. To update: the new
+# release's Bitwarden-<version>-amd64.deb and its sha256 (GitHub lists it).
+name = "Bitwarden"
+summary = "Keep your passwords safe"
+category = "Utilities"
+source = { url = "https://github.com/bitwarden/clients/releases/download/desktop-v2026.10.4/Bitwarden-2026.10.4-amd64.deb", sha256 = "a45a34a20a9d5becbb1c710851717583ad578597d10fbd2bd57fe597f7625f41", vendor = "com.bitwarden" }
+exec = "opt/Bitwarden/bitwarden"
+network = true
+args = ["--ozone-platform=wayland"]
+not_needed = ["microphone", "camera"]

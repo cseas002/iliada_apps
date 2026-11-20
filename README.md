@@ -51,6 +51,12 @@ never runs those). `[write]` adds files with the given contents
 (`"usr/lib/firefox-esr/distribution/policies.json" = '''…'''`): settings a
 distribution would ship, such as the browsers' Bitwarden policy.
 
+Apps Debian doesn't carry come from the maker's own `.deb`, pinned by its
+SHA-256: `source = { url = "https://…/app_1.0_amd64.deb", sha256 = "…",
+vendor = "com.example" }` (`vendor` is the app id's prefix; `arch`, default
+`amd64`, says which processor the .deb is for, and other processors skip the
+recipe). Its dependencies still come from Debian. See `recipes/bitwarden.toml`.
+
 Permissions: every app runs in its own sandbox and sees only its own data.
 `folders` (documents, downloads, music, pictures, videos) are asked for the
 first time the app runs, in a window Iliada draws; the answer can be changed
@@ -78,7 +84,10 @@ official download and the user's own machine translates it into a `.app`.
 
 ## Sources and licences
 
-Every app here is built, unmodified, from Debian stable packages. Each bundle's
+Every app here is built, unmodified, from Debian stable packages, except
+Bitwarden, which is Bitwarden's own GPL-3.0 `.deb` from its GitHub releases
+(source: github.com/bitwarden/clients at the same tag), with Debian packages
+for its dependencies. Each bundle's
 `Contents/Provenance.toml` lists every package it contains, with exact
 versions, download URLs and SHA-256 hashes. The corresponding source code for
 each of those versions is published by Debian (`deb.debian.org`, and

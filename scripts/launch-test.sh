@@ -27,6 +27,11 @@ printf '%-24s %-8s %s\n' APP RESULT NOTE > "$RESULTS/summary.txt"
 for app in "${apps[@]}"; do
   name="${app%.app}"; safe="${name// /_}"
   echo "== $app"
+  # Not built (the build failed): say so, rather than look for nothing.
+  if [ ! -f "$BUNDLES/$app/Contents/Info.toml" ]; then
+    printf '%-24s %-8s %s\n' "$name" MISSING "no bundle was built" >> "$RESULTS/summary.txt"
+    continue
+  fi
   VM "rm -rf '/Applications/$app'"
   tar -C "$BUNDLES" -cf - "$app" | VM "tar -C /Applications -xf -"
   VM "bash -s" <<SH
